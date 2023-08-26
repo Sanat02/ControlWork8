@@ -16,7 +16,7 @@ public abstract class BaseDao {
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     KeyHolder keyHolder;
 
-     BaseDao(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    BaseDao(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.keyHolder = new GeneratedKeyHolder();

@@ -20,13 +20,13 @@ import java.util.List;
 @RequestMapping
 @RequiredArgsConstructor
 public class FileController {
-    private final FileListService profileImageService;
+    private final FileListService fileListServicee;
     private static final int PAGE_SIZE = 5;
 
     @GetMapping()
-    public String getListOfAllFiles(@RequestParam(name = "page", defaultValue = "0") int page,Model model) {
+    public String getListOfAllFiles(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Page<FileListDto> files = profileImageService.getAllFiles(page,PAGE_SIZE);
+        Page<FileListDto> files = fileListServicee.getAllFiles(page, PAGE_SIZE);
         model.addAttribute("files", files);
         if (auth.getName().equals("anonymousUser")) {
             model.addAttribute("username", null);

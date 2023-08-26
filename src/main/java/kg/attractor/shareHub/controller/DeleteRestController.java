@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/delete")
 @RequiredArgsConstructor
 public class DeleteRestController {
-    private final FileListService profileImageService;
+    private final FileListService fileListService;
 
     @DeleteMapping("/{fileId}")
-    public void deleteFile(@PathVariable int fileId){
-        profileImageService.deleteFile(fileId);
+    public void deleteFile(@PathVariable int fileId) {
+        fileListService.deleteFile(fileId);
         System.out.println("It works!");
     }
 

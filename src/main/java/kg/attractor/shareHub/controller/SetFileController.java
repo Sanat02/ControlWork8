@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/images")
 @Controller
 public class SetFileController {
-    private final FileListService profileImageService;
+    private final FileListService fileListService;
     private final UserService userService;
 
     @GetMapping()
@@ -31,14 +31,14 @@ public class SetFileController {
             @RequestParam(name = "files") MultipartFile image,
             @RequestParam(name = "privacy") String status
 
-            ) {
+    ) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         FileListDto profileImageDto = FileListDto.builder()
                 .file(image)
                 .userId(userService.mapToUserDto(userService.getUserByEmail(auth.getName()).get()).getId())
                 .status(status)
                 .build();
-        profileImageService.uploadImage(profileImageDto);
+        fileListService.uploadImage(profileImageDto);
         return "redirect:/profile";
     }
 

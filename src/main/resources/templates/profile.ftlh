@@ -69,12 +69,13 @@
         .download-btn:hover {
             background-color: #0056b3;
         }
+
         .pag {
             margin-left: 15px;
             margin-top: 10px;
             text-decoration: none;
             color: white;
-            background-color:  #007bff;
+            background-color: #007bff;
             padding: 5px;
         }
 
@@ -112,7 +113,6 @@
                         ${account.accountName}
                     </h2>
                 </div>
-
 
 
                 <div class="hidden md:block">

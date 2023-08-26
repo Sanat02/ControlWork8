@@ -1,7 +1,6 @@
 package kg.attractor.shareHub.controller;
 
 
-
 import kg.attractor.shareHub.dto.UserDto;
 import kg.attractor.shareHub.service.FileListService;
 import kg.attractor.shareHub.service.UserService;
@@ -19,14 +18,15 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ProfileController {
     private final UserService userService;
-    private final FileListService profileImageService;
+    private final FileListService fileListService;
     private static final int PAGE_SIZE = 5;
+
     @GetMapping("/profile")
-    public String register(@RequestParam(name = "page", defaultValue = "0") int page,Model model) {
+    public String register(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDto userDto = userService.mapToUserDto(userService.getUserByEmail(auth.getName()).orElse(null));
-        userDto.setPages(profileImageService.getImageByUserId(userDto.getId(),page,PAGE_SIZE));
-        model.addAttribute("account",userDto);
+        userDto.setPages(fileListService.getImageByUserId(userDto.getId(), page, PAGE_SIZE));
+        model.addAttribute("account", userDto);
         return "profile";
     }
 

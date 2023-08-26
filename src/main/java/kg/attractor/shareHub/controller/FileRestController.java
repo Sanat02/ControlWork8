@@ -25,20 +25,15 @@ import java.nio.file.Paths;
 @RequiredArgsConstructor
 public class FileRestController {
 
-    private final FileListService profileImageService;
-    private final UserService userService;
+    private final FileListService fileListService;
+
     @PostMapping("/upload")
     public HttpStatus uploadImage(FileListDto profileImageDto) {
-        profileImageService.uploadImage(profileImageDto);
+        fileListService.uploadImage(profileImageDto);
         return HttpStatus.OK;
 
     }
 
-//    @GetMapping
-//    public ResponseEntity<?> getImagesByUserId() {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        return profileImageService.getImageByUsId(userService.mapToUserDto(userService.getUserByEmail(auth.getName()).get()).getId());
-//    }
     @GetMapping("/download/{fileName}")
     public ResponseEntity<?> downloadFile(@PathVariable String fileName) throws IOException {
         Path filePath = Paths.get("data", "images", fileName);

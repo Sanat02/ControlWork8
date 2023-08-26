@@ -68,7 +68,7 @@
             margin-top: 10px;
             text-decoration: none;
             color: white;
-            background-color:  #007bff;
+            background-color: #007bff;
             padding: 5px;
         }
     </style>

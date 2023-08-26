@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
 
@@ -18,7 +19,7 @@ public class UserService {
 
     private final UserDao userDao;
     private final PasswordEncoder encoder;
-    private final FileListService profileImageService;
+
 
     public Optional<User> getUserByEmail(String email) {
         log.info("Gol user by email:" + email);

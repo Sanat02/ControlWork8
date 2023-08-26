@@ -104,7 +104,7 @@
                 </div>
 
 
-                <!-- user meta form medium screens -->
+
                 <div class="hidden md:block">
                     <h1 class="font-semibold">${account.fullName}</h1>
                     <p>ByteWebster is a web development and coding blog website. Where we provide professional web

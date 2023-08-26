@@ -30,8 +30,21 @@
         }
 
         .download-btn {
+            width: 150px;
             display: inline-block;
             background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .nbtn {
+            width: 150px;
+            display: inline-block;
+            background-color: red;
             color: #fff;
             border: none;
             border-radius: 4px;
@@ -90,11 +103,29 @@
                 <td>${file.userId}</td>
                 <td>${file.fileName}</td>
                 <td>${file.status}</td>
-                <td>
-                    <button type="button" id="deleteBtn-${file.fileName}" data-fileid="${file.fileName}"
-                            class="delete-btn download-btn">Download
-                    </button>
-                </td>
+                <#if username??>
+                    <td>
+                        <button type="button" id="deleteBtn-${file.fileName}" data-fileid="${file.fileName}"
+                                class="delete-btn download-btn">Download
+                        </button>
+                    </td>
+                <#else>
+                    <#if file.status=="public">
+                        <td>
+                            <button type="button" id="deleteBtn-${file.fileName}" data-fileid="${file.fileName}"
+                                    class="delete-btn download-btn">Download
+                            </button>
+                        </td>
+                    <#else>
+                        <td>
+                            <a href="/login">
+                                <button class="nbtn">
+                                    Not available
+                                </button>
+                            </a>
+                        </td>
+                    </#if>
+                </#if>
             </tr>
         </#list>
 
@@ -109,16 +140,16 @@
             </a>
         </li>
         <#if username??>
-        <li class="flex-1 text-center">
-            <a href="/images" class="text-gray-600 hover:text-blue-500">
-                <i class="far fa-plus-square text-xl"></i>
-            </a>
-        </li>
-        <li class="flex-1 text-center">
-            <a href="/profile" class="text-gray-600 hover:text-blue-500">
-                <i class="far fa-user text-xl"></i>
-            </a>
-        </li>
+            <li class="flex-1 text-center">
+                <a href="/images" class="text-gray-600 hover:text-blue-500">
+                    <i class="far fa-plus-square text-xl"></i>
+                </a>
+            </li>
+            <li class="flex-1 text-center">
+                <a href="/profile" class="text-gray-600 hover:text-blue-500">
+                    <i class="far fa-user text-xl"></i>
+                </a>
+            </li>
         </#if>
     </ul>
 

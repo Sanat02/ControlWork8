@@ -10,11 +10,8 @@
         }
 
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin-top: 40px;
+            margin: 20px auto;
+            max-width: 800px;
         }
 
         .header {
@@ -75,40 +72,50 @@
             font-size: 14px;
             color: #6c757d;
         }
+        #act {
+            color: dodgerblue;
+        }
     </style>
-    <title>Profile Job Seeker</title>
+    <title>Load File</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css'>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/vacancies">Vacancies</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/resumes">Resumes</a>
-                </li>
-            </ul>
+<nav class="border-b px-4 py-2 bg-white">
+    <div class="flex flex-wrap items-center justify-between md:justify-around">
+
+        <div class="space-x-4">
+            <a class="inline-block bg-blue-500 px-2 py-1 text-white font-semibold
+                             text-sm rounded" href="/logout">Log out</a>
         </div>
     </div>
 </nav>
-
+<div class="container">
 <form action="/images" method="post" enctype="multipart/form-data">
     <input type="file" name="files" multiple>
     <br><br>
     <input type="submit" value="Upload">
 </form>
+</div>
+<nav class="bg-white border-t fixed bottom-0 w-full">
+    <ul class="flex justify-around py-2">
+        <li class="flex-1 text-center">
+            <a href="/" class="text-gray-600 hover:text-blue-500">
+                <i class="fas fa-home text-xl"></i>
+            </a>
+        </li>
+        <li class="flex-1 text-center">
+            <a href="/#" id="act" class="text-gray-600 hover:text-blue-500">
+                <i class="far fa-plus-square text-xl"></i>
+            </a>
+        </li>
+        <li class="flex-1 text-center">
+            <a href="/profile" class="text-gray-600 hover:text-blue-500">
+                <i class="far fa-user text-xl"></i>
+            </a>
+        </li>
+    </ul>
+
+</nav>
 </body>
 </html>

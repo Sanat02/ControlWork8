@@ -1,4 +1,4 @@
-package kg.attractor.instagram;
+package kg.attractor.shareHub;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

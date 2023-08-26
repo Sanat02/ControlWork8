@@ -1,4 +1,4 @@
-package kg.attractor.instagram.dao;
+package kg.attractor.shareHub.dao;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

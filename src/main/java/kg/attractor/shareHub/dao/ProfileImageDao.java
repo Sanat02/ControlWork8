@@ -1,9 +1,8 @@
-package kg.attractor.instagram.dao;
+package kg.attractor.shareHub.dao;
 
 
-import kg.attractor.instagram.model.ProfileImage;
+import kg.attractor.shareHub.model.ProfileImage;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

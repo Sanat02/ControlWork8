@@ -1,9 +1,9 @@
-package kg.attractor.instagram.controller;
+package kg.attractor.shareHub.controller;
 
 
 
-import kg.attractor.instagram.dto.UserDto;
-import kg.attractor.instagram.service.UserService;
+import kg.attractor.shareHub.dto.UserDto;
+import kg.attractor.shareHub.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;

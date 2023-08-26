@@ -1,8 +1,8 @@
-package kg.attractor.instagram.service;
+package kg.attractor.shareHub.service;
 
-import kg.attractor.instagram.dao.UserDao;
-import kg.attractor.instagram.dto.UserDto;
-import kg.attractor.instagram.model.User;
+import kg.attractor.shareHub.dao.UserDao;
+import kg.attractor.shareHub.dto.UserDto;
+import kg.attractor.shareHub.model.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;

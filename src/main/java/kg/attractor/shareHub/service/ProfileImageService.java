@@ -1,8 +1,8 @@
-package kg.attractor.instagram.service;
+package kg.attractor.shareHub.service;
 
-import kg.attractor.instagram.dao.ProfileImageDao;
-import kg.attractor.instagram.dto.ProfileImageDto;
-import kg.attractor.instagram.model.ProfileImage;
+import kg.attractor.shareHub.dao.ProfileImageDao;
+import kg.attractor.shareHub.dto.ProfileImageDto;
+import kg.attractor.shareHub.model.ProfileImage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;

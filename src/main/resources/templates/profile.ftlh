@@ -39,9 +39,6 @@
 
 <nav class="border-b px-4 py-2 bg-white">
     <div class="flex flex-wrap items-center justify-between md:justify-around">
-        <img class="h-10"
-             src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/150px-Instagram_logo.svg.png"
-             alt="instagram">
 
         <div class="space-x-4">
             <a class="inline-block bg-blue-500 px-2 py-1 text-white font-semibold
@@ -69,12 +66,7 @@
                         ${account.accountName}
                     </h2>
 
-                    <!-- badge -->
-                    <span class="inline-block fas fa-certificate fa-lg text-blue-500
-                                 relative mr-6  text-xl transform -translate-y-2" aria-hidden="true">
-              <i class="fas fa-check text-white text-xs absolute inset-x-0
-                                 ml-1 mt-px"></i>
-            </span>
+
 
                     <!-- edit button -->
                     <a href="#" class="bg-blue-500 px-2 py-1
@@ -82,22 +74,7 @@
                           sm:inline-block block">Edit</a>
                 </div>
 
-                <!-- post, following, followers list for medium screens -->
-                <ul class="hidden md:flex space-x-8 mb-4">
-                    <li>
-                        <span class="font-semibold">6</span>
-                        posts
-                    </li>
 
-                    <li>
-                        <span class="font-semibold">50.5k</span>
-                        followers
-                    </li>
-                    <li>
-                        <span class="font-semibold">10</span>
-                        following
-                    </li>
-                </ul>
 
                 <!-- user meta form medium screens -->
                 <div class="hidden md:block">
@@ -123,88 +100,9 @@
         <!-- posts -->
         <div class="px-px md:px-3">
 
-            <!-- user following for mobile only -->
-            <ul class="flex md:hidden justify-around space-x-8 border-t
-                  text-center p-2 text-gray-600 leading-snug text-sm">
-                <li>
-                    <span class="font-semibold text-gray-800 block">6</span>
-                    posts
-                </li>
 
-                <li>
-                    <span class="font-semibold text-gray-800 block">50.5k</span>
-                    followers
-                </li>
-                <li>
-                    <span class="font-semibold text-gray-800 block">10</span>
-                    following
-                </li>
-            </ul>
             <br>
             <br>
-            <!-- insta freatures -->
-            <ul class="flex items-center justify-around md:justify-center space-x-12
-                      uppercase tracking-widest font-semibold text-xs text-gray-600
-                      border-t">
-                <!-- posts tab is active -->
-                <li class="md:border-t md:border-gray-700 md:-mt-px md:text-gray-700">
-                    <a class="inline-block p-3" href="#">
-                        <i class="fas fa-th-large text-xl md:text-xs"></i>
-                        <span class="hidden md:inline">post</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="inline-block p-3" href="#">
-                        <i class="far fa-square text-xl md:text-xs"></i>
-                        <span class="hidden md:inline">igtv</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="inline-block p-3" href="#">
-                        <i class="fas fa-user border border-gray-500
-                               px-1 pt-1 rounded text-xl md:text-xs"></i>
-                        <span class="hidden md:inline">tagged</span>
-                    </a>
-                </li>
-            </ul>
-
-            <!-- flexbox grid -->
-            <div class="flex flex-wrap -mx-px md:-mx-3">
-
-                <!-- column -->
-                <#list account.images as image >
-                <div class="w-1/3 p-px md:px-3">
-                    <!-- post 1-->
-                    <a href="#">
-                        <article class="post bg-gray-100 text-white relative pb-full md:mb-6">
-                            <!-- post images-->
-                            <img class="w-full h-full absolute left-0 top-0 object-cover" src="images/demo.png"
-                                 alt="image">
-
-                            <i class="fas fa-square absolute right-0 top-0 m-1"></i>
-                            <!-- overlay-->
-                            <div class="overlay bg-gray-800 bg-opacity-25 w-full h-full absolute
-                                  left-0 top-0 hidden">
-                                <div class="flex justify-center items-center
-                                      space-x-4 h-full">
-                    <span class="p-2">
-                      <i class="fas fa-heart"></i>
-                      412K
-                    </span>
-
-                                    <span class="p-2">
-                      <i class="fas fa-comment"></i>
-                      2,909
-                    </span>
-                                </div>
-                            </div>
-
-                        </article>
-                    </a>
-                </div>
-                </#list>
-
-            </div>
         </div>
     </div>
 </main>
@@ -212,23 +110,13 @@
 <nav class="bg-white border-t fixed bottom-0 w-full">
     <ul class="flex justify-around py-2">
         <li class="flex-1 text-center">
-            <a href="#" class="text-gray-600 hover:text-blue-500">
+            <a href="/"   class="text-gray-600 hover:text-blue-500">
                 <i class="fas fa-home text-xl"></i>
-            </a>
-        </li>
-        <li class="flex-1 text-center">
-            <a href="#" class="text-gray-600 hover:text-blue-500">
-                <i class="fas fa-search text-xl"></i>
             </a>
         </li>
         <li class="flex-1 text-center">
             <a href="/images" class="text-gray-600 hover:text-blue-500">
                 <i class="far fa-plus-square text-xl"></i>
-            </a>
-        </li>
-        <li class="flex-1 text-center">
-            <a href="#" class="text-gray-600 hover:text-blue-500">
-                <i class="far fa-heart text-xl"></i>
             </a>
         </li>
         <li class="flex-1 text-center">

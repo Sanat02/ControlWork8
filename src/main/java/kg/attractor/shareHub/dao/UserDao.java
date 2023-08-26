@@ -1,6 +1,6 @@
-package kg.attractor.instagram.dao;
+package kg.attractor.shareHub.dao;
 
-import kg.attractor.instagram.model.User;
+import kg.attractor.shareHub.model.User;
 import lombok.SneakyThrows;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.support.DataAccessUtils;

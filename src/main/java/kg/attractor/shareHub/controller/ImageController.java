@@ -1,9 +1,9 @@
-package kg.attractor.instagram.controller;
+package kg.attractor.shareHub.controller;
 
 
-import kg.attractor.instagram.dto.ProfileImageDto;
-import kg.attractor.instagram.service.ProfileImageService;
-import kg.attractor.instagram.service.UserService;
+import kg.attractor.shareHub.dto.ProfileImageDto;
+import kg.attractor.shareHub.service.ProfileImageService;
+import kg.attractor.shareHub.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

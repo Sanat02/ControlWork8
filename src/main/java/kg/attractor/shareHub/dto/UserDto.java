@@ -1,4 +1,4 @@
-package kg.attractor.instagram.dto;
+package kg.attractor.shareHub.dto;
 
 
 import jakarta.validation.constraints.*;

@@ -67,9 +67,6 @@
 </head>
 <body>
 <div class="container">
-    <div class="logo">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWo4v-BaVbLHGYKpGxNQBjiOQpqrJmTAgvLA&usqp=CAU">
-    </div>
     <form action="/register" method="post">
         <input type="text" placeholder="Email" name="email">
         <input type="text" placeholder="Full Name" name="full_name">

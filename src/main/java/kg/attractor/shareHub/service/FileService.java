@@ -1,4 +1,4 @@
-package kg.attractor.instagram.service;
+package kg.attractor.shareHub.service;
 
 
 import lombok.SneakyThrows;

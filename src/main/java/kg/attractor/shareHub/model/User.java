@@ -1,4 +1,4 @@
-package kg.attractor.instagram.model;
+package kg.attractor.shareHub.model;
 
 import lombok.*;
 

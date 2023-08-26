@@ -72,6 +72,7 @@
             font-size: 14px;
             color: #6c757d;
         }
+
         #act {
             color: dodgerblue;
         }
@@ -91,11 +92,18 @@
     </div>
 </nav>
 <div class="container">
-<form action="/images" method="post" enctype="multipart/form-data">
-    <input type="file" name="files" multiple>
-    <br><br>
-    <input type="submit" value="Upload">
-</form>
+    <form action="/images/set" method="post" enctype="multipart/form-data">
+        <label for="files">Select Images:</label>
+        <input type="file" id="files" name="files" multiple required>
+        <br><br>
+        <label for="privacy">Select Privacy:</label>
+        <select id="privacy" name="privacy" required>
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Upload">
+    </form>
 </div>
 <nav class="bg-white border-t fixed bottom-0 w-full">
     <ul class="flex justify-around py-2">

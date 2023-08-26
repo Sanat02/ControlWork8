@@ -28,6 +28,7 @@ public class ProfileImageService {
                 .userId(profileImageDto.getUserId())
                 .fileName(fileName)
                 .id(profileImageDto.getId())
+                .status(profileImageDto.getStatus())
                 .build();
         profileImageDao.save(pi);
         log.info("Image saved:" + pi.getFileName());
@@ -49,8 +50,10 @@ public class ProfileImageService {
         List<ProfileImage> profileImages = profileImageDao.getImageByUserId(userId);
         List<ProfileImageDto> profileImageDtos = profileImages.stream()
                 .map(e -> ProfileImageDto.builder()
+                        .id(e.getId())
                         .fileName(e.getFileName())
                         .userId(e.getUserId())
+                        .status(e.getStatus())
                         .build()
                 ).collect(Collectors.toList());
         return profileImageDtos;
@@ -65,5 +68,20 @@ public class ProfileImageService {
         }
 
         return ResponseEntity.ok(responseEntities);
+    }
+    public List<ProfileImageDto> getAllFiles(){
+        List<ProfileImage> profileImages = profileImageDao.getAllFiles();
+        List<ProfileImageDto> profileImageDtos = profileImages.stream()
+                .map(e -> ProfileImageDto.builder()
+                        .fileName(e.getFileName())
+                        .userId(e.getUserId())
+                        .status(e.getStatus())
+                        .build()
+                ).collect(Collectors.toList());
+        return profileImageDtos;
+    }
+
+    public void deleteFile(int fileId){
+        profileImageDao.delete(fileId);
     }
 }

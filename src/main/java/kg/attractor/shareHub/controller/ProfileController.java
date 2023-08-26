@@ -3,6 +3,7 @@ package kg.attractor.shareHub.controller;
 
 
 import kg.attractor.shareHub.dto.UserDto;
+import kg.attractor.shareHub.service.ProfileImageService;
 import kg.attractor.shareHub.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,11 +19,13 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ProfileController {
     private final UserService userService;
+    private final ProfileImageService profileImageService;
 
     @GetMapping("/profile")
     public String register(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDto userDto = userService.mapToUserDto(userService.getUserByEmail(auth.getName()).orElse(null));
+        userDto.setImages(profileImageService.getImageByUserId(userDto.getId()));
         model.addAttribute("account",userDto);
         return "profile";
     }

@@ -25,19 +25,21 @@ public class SetImageController {
         return "setFile";
     }
 
-    @PostMapping()
+    @PostMapping("/set")
     @ResponseStatus(HttpStatus.SEE_OTHER)
     public String addImage(
-            @RequestParam(name = "files") MultipartFile image
+            @RequestParam(name = "files") MultipartFile image,
+            @RequestParam(name = "privacy") String status
 
-    ) {
-        Authentication auth= SecurityContextHolder.getContext().getAuthentication();
-        ProfileImageDto profileImageDto=ProfileImageDto.builder()
+            ) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        ProfileImageDto profileImageDto = ProfileImageDto.builder()
                 .file(image)
                 .userId(userService.mapToUserDto(userService.getUserByEmail(auth.getName()).get()).getId())
+                .status(status)
                 .build();
         profileImageService.uploadImage(profileImageDto);
-        return "redirect:/profile" ;
+        return "redirect:/profile";
     }
 
 }

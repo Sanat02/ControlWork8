@@ -10,5 +10,6 @@ public class ProfileImage {
     private int id;
     private int userId;
     private String fileName;
+    private String status;
 
 }

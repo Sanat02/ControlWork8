@@ -32,6 +32,42 @@
             }
         }
 
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .download-btn:hover {
+            background-color: #0056b3;
+        }
+
     </style>
 
 </head>
@@ -67,13 +103,11 @@
                     </h2>
 
 
-
                     <!-- edit button -->
                     <a href="#" class="bg-blue-500 px-2 py-1
                           text-white font-semibold text-sm rounded block text-center
                           sm:inline-block block">Edit</a>
                 </div>
-
 
 
                 <!-- user meta form medium screens -->
@@ -97,20 +131,34 @@
 
         </header>
 
-        <!-- posts -->
-        <div class="px-px md:px-3">
-
-
-            <br>
-            <br>
-        </div>
     </div>
 </main>
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>File Name</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <#list account.images as image>
+            <tr>
+                <td>${image.fileName}</td>
+                <td>${image.status}</td>
+                <td><button type="button" id="deleteBtn-${image.getId()}" data-fileid="${image.getId()}" class="delete-btn download-btn">Delete</button></td>
+            </tr>
+        </#list>
+        </tbody>
+    </table>
+</div>
+
 
 <nav class="bg-white border-t fixed bottom-0 w-full">
     <ul class="flex justify-around py-2">
         <li class="flex-1 text-center">
-            <a href="/"   class="text-gray-600 hover:text-blue-500">
+            <a href="/" class="text-gray-600 hover:text-blue-500">
                 <i class="fas fa-home text-xl"></i>
             </a>
         </li>
@@ -127,6 +175,31 @@
     </ul>
 
 </nav>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const deleteButtons = document.querySelectorAll(".delete-btn");
 
+        deleteButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                const fileId = button.getAttribute("data-fileid");
+                if (confirm('Are you sure you want to delete this file?')) {
+                    fetch(`/delete/` + fileId, {
+                        method: 'DELETE'
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                location.reload();
+                            } else {
+                                console.error('Error deleting file:', response.status);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error deleting file:', error);
+                        });
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

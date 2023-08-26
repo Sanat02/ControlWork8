@@ -66,23 +66,22 @@
     <table>
         <thead>
         <tr>
+            <th>User ID</th>
             <th>File Name</th>
             <th>Status</th>
             <th>Action</th>
         </tr>
         </thead>
         <tbody>
+        <#list files as file>
         <tr>
-            <td>File1.jpg</td>
-            <td>Available</td>
+            <td>${file.userId}</td>
+            <td>${file.fileName}</td>
+            <td>${file.status}</td>
             <td><a href="/download/File1.jpg" class="download-btn">Download</a></td>
         </tr>
-        <tr>
-            <td>File2.png</td>
-            <td>Available</td>
-            <td><a href="/download/File2.png" class="download-btn">Download</a></td>
-        </tr>
-        <!-- Add more rows as needed -->
+       </#list>
+
         </tbody>
     </table>
 </div>

@@ -4,7 +4,7 @@ databaseChangeLog:
       author: Sanat
       changes:
         - createTable:
-            tableName: profile_images
+            tableName: files
             columns:
               - column:
                   name: id

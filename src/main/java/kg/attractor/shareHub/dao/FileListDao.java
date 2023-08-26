@@ -16,9 +16,9 @@ public class FileListDao {
     private final JdbcTemplate jdbcTemplate;
 
     public void save(File profileImage) {
-        String sql = "insert into files(userid,filename,status) " +
-                "values  ( ? , ? , ? )";
-        jdbcTemplate.update(sql, profileImage.getUserId(), profileImage.getFileName(), profileImage.getStatus());
+        String sql = "insert into files(userid,filename,status,rate) " +
+                "values  ( ? , ? , ? ,? )";
+        jdbcTemplate.update(sql, profileImage.getUserId(), profileImage.getFileName(), profileImage.getStatus(),profileImage.getRate());
     }
 
     public List<File> getImageByUserId(int userId) {

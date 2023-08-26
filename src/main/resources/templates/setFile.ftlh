@@ -13,10 +13,11 @@
             margin: 20px auto;
             max-width: 800px;
         }
+
         #act {
             color: dodgerblue;
         }
-        
+
     </style>
     <title>Load File</title>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'>
@@ -42,6 +43,16 @@
             <option value="public">Public</option>
             <option value="private">Private</option>
         </select>
+        <br><br>
+        <label for="privacy">Select Rate:</label>
+        <select id="privacy" name="rate" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+
         <br><br>
         <input type="submit" value="Upload">
     </form>

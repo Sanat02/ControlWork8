@@ -11,5 +11,6 @@ public class File {
     private int userId;
     private String fileName;
     private String status;
+    private int rate;
 
 }

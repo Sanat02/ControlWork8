@@ -71,6 +71,10 @@
             background-color: #007bff;
             padding: 5px;
         }
+
+        .star-rating {
+            color: yellow;
+        }
     </style>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css'>
@@ -105,6 +109,7 @@
             <th>User ID</th>
             <th>File Name</th>
             <th>Status</th>
+            <th>Rate</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -114,6 +119,14 @@
                 <td>${file.userId}</td>
                 <td>${file.fileName}</td>
                 <td>${file.status}</td>
+                <td>
+
+                    <span class="star-rating">
+                        <#list 1..file.rate as _>
+                            <i class="fas fa-star"></i>
+                        </#list>
+                    </span>
+                </td>
                 <#if username??>
                     <td>
                         <button type="button" id="deleteBtn-${file.fileName}" data-fileid="${file.fileName}"

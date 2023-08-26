@@ -29,13 +29,15 @@ public class SetFileController {
     @ResponseStatus(HttpStatus.SEE_OTHER)
     public String addImage(
             @RequestParam(name = "files") MultipartFile image,
-            @RequestParam(name = "privacy") String status
+            @RequestParam(name = "privacy") String status,
+            @RequestParam(name = "rate") int rate
 
     ) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         FileListDto profileImageDto = FileListDto.builder()
                 .file(image)
                 .userId(userService.mapToUserDto(userService.getUserByEmail(auth.getName()).get()).getId())
+                .rate(rate)
                 .status(status)
                 .build();
         fileListService.uploadImage(profileImageDto);

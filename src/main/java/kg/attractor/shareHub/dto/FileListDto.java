@@ -15,4 +15,5 @@ public class FileListDto {
     @Pattern(regexp = "^[0-9]+$", message = "User id should contain only numbers!")
     private int userId;
     private String status;
+    private int rate;
 }

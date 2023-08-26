@@ -25,6 +25,7 @@ public class FileListService {
     public void uploadImage(FileListDto profileImageDto) {
         String fileName = fileService.saveUploadedFile(profileImageDto.getFile(), SUB_DIR);
         File pi = File.builder()
+                .rate(profileImageDto.getRate())
                 .userId(profileImageDto.getUserId())
                 .fileName(fileName)
                 .id(profileImageDto.getId())
@@ -55,6 +56,7 @@ public class FileListService {
         List<File> files = fileListDao.getAllFiles();
         List<FileListDto> fileListDtos = files.stream()
                 .map(e -> FileListDto.builder()
+                        .rate(e.getRate())
                         .id(e.getId())
                         .fileName(e.getFileName())
                         .userId(e.getUserId())

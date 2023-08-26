@@ -28,3 +28,6 @@ databaseChangeLog:
               - column:
                   name: status
                   type: varchar(255)
+              - column:
+                  name: rate
+                  type: varchar(255)

@@ -101,12 +101,6 @@
                     <h2 class="text-3xl inline-block font-light md:mr-2 mb-2 sm:mb-0">
                         ${account.accountName}
                     </h2>
-
-
-                    <!-- edit button -->
-                    <a href="#" class="bg-blue-500 px-2 py-1
-                          text-white font-semibold text-sm rounded block text-center
-                          sm:inline-block block">Edit</a>
                 </div>
 
 

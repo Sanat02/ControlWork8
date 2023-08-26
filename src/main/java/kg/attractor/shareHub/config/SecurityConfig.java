@@ -64,9 +64,12 @@ public class SecurityConfig {
                         .permitAll())
                 .logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/")
                         .permitAll())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/register")).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/")).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/posts/download/{fileName}")).permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();

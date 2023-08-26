@@ -18,13 +18,12 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.NoSuchElementException;
 
 
 @RestController
 @RequestMapping("/posts")
 @RequiredArgsConstructor
-public class ImageController {
+public class FileRestController {
 
     private final ProfileImageService profileImageService;
     private final UserService userService;

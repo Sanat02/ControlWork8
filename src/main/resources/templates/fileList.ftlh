@@ -55,13 +55,25 @@
 <nav class="border-b px-4 py-2 bg-white">
     <div class="flex flex-wrap items-center justify-between md:justify-around">
 
-        <div class="space-x-4">
-            <a class="inline-block bg-blue-500 px-2 py-1 text-white font-semibold
+        <#if username??>
+            <div class="space-x-4">
+                <a class="inline-block bg-blue-500 px-2 py-1 text-white font-semibold
                              text-sm rounded" href="/logout">Log out</a>
-        </div>
+            </div>
+        <#else>
+            <div class="space-x-4">
+                <a class="inline-block bg-blue-500 px-2 py-1 text-white font-semibold
+                             text-sm rounded" href="/login">Sign in</a>
+            </div>
+
+            <div class="space-x-4">
+                <a class="inline-block bg-blue-500 px-2 py-1 text-white font-semibold
+                             text-sm rounded" href="/register">Sign up</a>
+            </div>
+        </#if>
     </div>
 </nav>
-<h1>${hello}</h1>
+
 <div class="container">
     <table>
         <thead>
@@ -96,6 +108,7 @@
                 <i class="fas fa-home text-xl"></i>
             </a>
         </li>
+        <#if username??>
         <li class="flex-1 text-center">
             <a href="/images" class="text-gray-600 hover:text-blue-500">
                 <i class="far fa-plus-square text-xl"></i>
@@ -106,6 +119,7 @@
                 <i class="far fa-user text-xl"></i>
             </a>
         </li>
+        </#if>
     </ul>
 
 </nav>
@@ -119,7 +133,7 @@
         downloadButtons.forEach(button => {
             button.addEventListener("click", function () {
                 const fileName = button.getAttribute("data-fileid");
-                const downloadUrl = `/posts/download/`+fileName;
+                const downloadUrl = `/posts/download/` + fileName;
 
                 fetch(downloadUrl, {
                     method: 'GET',

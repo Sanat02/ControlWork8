@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/delete")
 @RequiredArgsConstructor
-public class RestQController {
+public class DeleteRestController {
     private final ProfileImageService profileImageService;
 
     @DeleteMapping("/{fileId}")

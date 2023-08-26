@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 @RequestMapping("/images")
 @Controller
-public class SetImageController {
+public class SetFileController {
     private final ProfileImageService profileImageService;
     private final UserService userService;
 

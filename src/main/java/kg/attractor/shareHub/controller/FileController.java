@@ -1,8 +1,7 @@
 package kg.attractor.shareHub.controller;
 
-import kg.attractor.shareHub.dto.ProfileImageDto;
-import kg.attractor.shareHub.model.ProfileImage;
-import kg.attractor.shareHub.service.ProfileImageService;
+import kg.attractor.shareHub.dto.FileListDto;
+import kg.attractor.shareHub.service.FileListService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -19,12 +18,12 @@ import java.util.List;
 @RequestMapping
 @RequiredArgsConstructor
 public class FileController {
-    private final ProfileImageService profileImageService;
+    private final FileListService profileImageService;
 
     @GetMapping()
     public String getListOfAllFiles(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        List<ProfileImageDto> files = profileImageService.getAllFiles();
+        List<FileListDto> files = profileImageService.getAllFiles();
         model.addAttribute("files", files);
         if (auth.getName().equals("anonymousUser")) {
             model.addAttribute("username", null);

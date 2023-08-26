@@ -1,8 +1,8 @@
 package kg.attractor.shareHub.service;
 
-import kg.attractor.shareHub.dao.ProfileImageDao;
-import kg.attractor.shareHub.dto.ProfileImageDto;
-import kg.attractor.shareHub.model.ProfileImage;
+import kg.attractor.shareHub.dao.FileListDao;
+import kg.attractor.shareHub.dto.FileListDto;
+import kg.attractor.shareHub.model.File;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -11,20 +11,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ProfileImageService {
+public class FileListService {
     private static final String SUB_DIR = "/images";
     private final FileService fileService;
-    private final ProfileImageDao profileImageDao;
+    private final FileListDao profileImageDao;
 
-    public void uploadImage(ProfileImageDto profileImageDto) {
+    public void uploadImage(FileListDto profileImageDto) {
         String fileName = fileService.saveUploadedFile(profileImageDto.getFile(), SUB_DIR);
-        ProfileImage pi = ProfileImage.builder()
+        File pi = File.builder()
                 .userId(profileImageDto.getUserId())
                 .fileName(fileName)
                 .id(profileImageDto.getId())
@@ -36,10 +35,10 @@ public class ProfileImageService {
     }
 
 
-    public List<ProfileImageDto> getImageByUserId(int userId) {
-        List<ProfileImage> profileImages = profileImageDao.getImageByUserId(userId);
-        List<ProfileImageDto> profileImageDtos = profileImages.stream()
-                .map(e -> ProfileImageDto.builder()
+    public List<FileListDto> getImageByUserId(int userId) {
+        List<File> profileImages = profileImageDao.getImageByUserId(userId);
+        List<FileListDto> profileImageDtos = profileImages.stream()
+                .map(e -> FileListDto.builder()
                         .id(e.getId())
                         .fileName(e.getFileName())
                         .userId(e.getUserId())
@@ -50,20 +49,20 @@ public class ProfileImageService {
     }
 
     public ResponseEntity<List<?>> getImageByUsId(int userId) {
-        List<ProfileImage> images = profileImageDao.getImageByUserId(userId);
+        List<File> images = profileImageDao.getImageByUserId(userId);
         List<ResponseEntity<?>> responseEntities = new ArrayList<>();
 
-        for (ProfileImage image : images) {
+        for (File image : images) {
             responseEntities.add(fileService.getOutputFile(image.getFileName(), SUB_DIR, MediaType.IMAGE_JPEG));
         }
 
         return ResponseEntity.ok(responseEntities);
     }
 
-    public List<ProfileImageDto> getAllFiles() {
-        List<ProfileImage> profileImages = profileImageDao.getAllFiles();
-        List<ProfileImageDto> profileImageDtos = profileImages.stream()
-                .map(e -> ProfileImageDto.builder()
+    public List<FileListDto> getAllFiles() {
+        List<File> profileImages = profileImageDao.getAllFiles();
+        List<FileListDto> profileImageDtos = profileImages.stream()
+                .map(e -> FileListDto.builder()
                         .id(e.getId())
                         .fileName(e.getFileName())
                         .userId(e.getUserId())

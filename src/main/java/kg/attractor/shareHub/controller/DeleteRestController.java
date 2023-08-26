@@ -1,6 +1,6 @@
 package kg.attractor.shareHub.controller;
 
-import kg.attractor.shareHub.service.ProfileImageService;
+import kg.attractor.shareHub.service.FileListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/delete")
 @RequiredArgsConstructor
 public class DeleteRestController {
-    private final ProfileImageService profileImageService;
+    private final FileListService profileImageService;
 
     @DeleteMapping("/{fileId}")
     public void deleteFile(@PathVariable int fileId){

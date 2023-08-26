@@ -1,8 +1,8 @@
 package kg.attractor.shareHub.controller;
 
 
-import kg.attractor.shareHub.dto.ProfileImageDto;
-import kg.attractor.shareHub.service.ProfileImageService;
+import kg.attractor.shareHub.dto.FileListDto;
+import kg.attractor.shareHub.service.FileListService;
 import kg.attractor.shareHub.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/images")
 @Controller
 public class SetFileController {
-    private final ProfileImageService profileImageService;
+    private final FileListService profileImageService;
     private final UserService userService;
 
     @GetMapping()
@@ -33,7 +33,7 @@ public class SetFileController {
 
             ) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        ProfileImageDto profileImageDto = ProfileImageDto.builder()
+        FileListDto profileImageDto = FileListDto.builder()
                 .file(image)
                 .userId(userService.mapToUserDto(userService.getUserByEmail(auth.getName()).get()).getId())
                 .status(status)

@@ -3,7 +3,7 @@ package kg.attractor.shareHub.controller;
 
 
 import kg.attractor.shareHub.dto.UserDto;
-import kg.attractor.shareHub.service.ProfileImageService;
+import kg.attractor.shareHub.service.FileListService;
 import kg.attractor.shareHub.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ProfileController {
     private final UserService userService;
-    private final ProfileImageService profileImageService;
+    private final FileListService profileImageService;
 
     @GetMapping("/profile")
     public String register(Model model) {

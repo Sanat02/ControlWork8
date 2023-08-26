@@ -1,8 +1,8 @@
 package kg.attractor.shareHub.controller;
 
 
-import kg.attractor.shareHub.dto.ProfileImageDto;
-import kg.attractor.shareHub.service.ProfileImageService;
+import kg.attractor.shareHub.dto.FileListDto;
+import kg.attractor.shareHub.service.FileListService;
 import kg.attractor.shareHub.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.FileSystemResource;
@@ -25,10 +25,10 @@ import java.nio.file.Paths;
 @RequiredArgsConstructor
 public class FileRestController {
 
-    private final ProfileImageService profileImageService;
+    private final FileListService profileImageService;
     private final UserService userService;
     @PostMapping("/upload")
-    public HttpStatus uploadImage(ProfileImageDto profileImageDto) {
+    public HttpStatus uploadImage(FileListDto profileImageDto) {
         profileImageService.uploadImage(profileImageDto);
         return HttpStatus.OK;
 

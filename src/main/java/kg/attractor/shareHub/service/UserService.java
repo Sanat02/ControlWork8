@@ -21,7 +21,7 @@ public class UserService {
 
     private final UserDao userDao;
     private final PasswordEncoder encoder;
-    private final ProfileImageService profileImageService;
+    private final FileListService profileImageService;
 
 
     public List<UserDto> getAllUsers() {
@@ -49,7 +49,6 @@ public class UserService {
 
     public String isUserExist(String email) {
         try {
-
             Optional<User> user = userDao.getUserByEmail(email);
             if (user.isPresent()) {
                 log.error("User:" + email + "  exists!");

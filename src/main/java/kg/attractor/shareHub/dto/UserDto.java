@@ -26,7 +26,7 @@ public class UserDto {
     private String password;
 
 
-    private List<ProfileImageDto> images;
+    private List<FileListDto> images;
 
 
 }

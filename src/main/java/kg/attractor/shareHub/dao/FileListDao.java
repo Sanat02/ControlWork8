@@ -1,7 +1,7 @@
 package kg.attractor.shareHub.dao;
 
 
-import kg.attractor.shareHub.model.ProfileImage;
+import kg.attractor.shareHub.model.File;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -12,27 +12,27 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class ProfileImageDao {
+public class FileListDao {
     private final JdbcTemplate jdbcTemplate;
 
-    public void save(ProfileImage profileImage) {
+    public void save(File profileImage) {
         String sql = "insert into profile_images(userid,filename,status) " +
                 "values  ( ? , ? , ? )";
         jdbcTemplate.update(sql, profileImage.getUserId(), profileImage.getFileName(),profileImage.getStatus());
     }
 
-    public ProfileImage getImageById(int imageId) {
+    public File getImageById(int imageId) {
         String sql = "select * from profile_images where id = ?";
-        return DataAccessUtils.singleResult(jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ProfileImage.class), imageId));
+        return DataAccessUtils.singleResult(jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(File.class), imageId));
     }
 
-    public List<ProfileImage> getImageByUserId(int userId) {
+    public List<File> getImageByUserId(int userId) {
         String sql = "select * from profile_images where userId = ?";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ProfileImage.class), userId);
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(File.class), userId);
     }
-    public List<ProfileImage> getAllFiles(){
+    public List<File> getAllFiles(){
         String sql = "select * from profile_images ";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ProfileImage.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(File.class));
     }
     public void delete(int id) {
         String sql = "DELETE FROM profile_images WHERE id = ?";

@@ -6,7 +6,7 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class ProfileImage {
+public class File {
     private int id;
     private int userId;
     private String fileName;

@@ -1,14 +1,12 @@
 package kg.attractor.shareHub.controller;
 
 
-
 import kg.attractor.shareHub.dto.UserDto;
 import kg.attractor.shareHub.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -20,12 +18,12 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login() {
+        log.info("Successful login!");
         return "login";
     }
 
     @GetMapping("/register")
-    public String register(Model model) {
-        model.addAttribute("hello","hi");
+    public String register() {
         return "registration";
     }
 
@@ -40,7 +38,9 @@ public class AuthController {
 
     ) {
 
+
         if (userService.isUserExist(email).equalsIgnoreCase("1")) {
+            log.error("this email already exists!");
             return "redirect:/register/error";
         } else {
             UserDto userDto = UserDto.builder()
@@ -51,6 +51,7 @@ public class AuthController {
                     .build();
 
             int userId = userService.save(userDto);
+            log.info("Successful registration!");
             return "redirect:/login";
         }
     }

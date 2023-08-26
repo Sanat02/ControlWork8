@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Builder
 @Data
-public class ProfileImageDto {
+public class FileListDto {
     private int id;
     private MultipartFile file;
     private String fileName;

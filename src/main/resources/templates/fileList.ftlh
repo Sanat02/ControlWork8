@@ -15,8 +15,10 @@
         }
 
         table {
+            margin-top: 300px;
             border-collapse: collapse;
             width: 100%;
+            margin-bottom: 15px;
         }
 
         th, td {
@@ -60,6 +62,16 @@
         #act {
             color: dodgerblue;
         }
+
+        .pag {
+            width: 150px;
+            margin-left: 15px;
+            margin-top: 10px;
+            text-decoration: none;
+            color: white;
+            background-color:  #007bff;
+            padding: 5px;
+        }
     </style>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css'>
@@ -98,7 +110,7 @@
         </tr>
         </thead>
         <tbody>
-        <#list files as file>
+        <#list files.content as file>
             <tr>
                 <td>${file.userId}</td>
                 <td>${file.fileName}</td>
@@ -128,9 +140,14 @@
                 </#if>
             </tr>
         </#list>
-
         </tbody>
     </table>
+    <#if files.hasPrevious()>
+        <a class="pag" href="/?page=${files.number - 1}">Previous Page</a>
+    </#if>
+    <#if files.hasNext()>
+        <a class="pag" href="/?page=${files.number + 1}">Next Page</a>
+    </#if>
 </div>
 <nav class="bg-white border-t fixed bottom-0 w-full">
     <ul class="flex justify-around py-2">
@@ -155,7 +172,6 @@
 
 </nav>
 
-<!-- Include your HTML and CSS code here -->
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

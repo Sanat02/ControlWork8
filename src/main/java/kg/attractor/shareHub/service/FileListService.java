@@ -5,11 +5,12 @@ import kg.attractor.shareHub.dto.FileListDto;
 import kg.attractor.shareHub.model.File;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 public class FileListService {
     private static final String SUB_DIR = "/images";
     private final FileService fileService;
-    private final FileListDao profileImageDao;
+    private final FileListDao fileListDao;
 
     public void uploadImage(FileListDto profileImageDto) {
         String fileName = fileService.saveUploadedFile(profileImageDto.getFile(), SUB_DIR);
@@ -29,15 +30,15 @@ public class FileListService {
                 .id(profileImageDto.getId())
                 .status(profileImageDto.getStatus())
                 .build();
-        profileImageDao.save(pi);
+        fileListDao.save(pi);
         log.info("Image saved:" + pi.getFileName());
 
     }
 
 
     public List<FileListDto> getImageByUserId(int userId) {
-        List<File> profileImages = profileImageDao.getImageByUserId(userId);
-        List<FileListDto> profileImageDtos = profileImages.stream()
+        List<File> files = fileListDao.getImageByUserId(userId);
+        List<FileListDto> fileListDtos = files.stream()
                 .map(e -> FileListDto.builder()
                         .id(e.getId())
                         .fileName(e.getFileName())
@@ -45,34 +46,38 @@ public class FileListService {
                         .status(e.getStatus())
                         .build()
                 ).collect(Collectors.toList());
-        return profileImageDtos;
+        log.info("Got images of user :" + userId);
+        return fileListDtos;
     }
 
-    public ResponseEntity<List<?>> getImageByUsId(int userId) {
-        List<File> images = profileImageDao.getImageByUserId(userId);
-        List<ResponseEntity<?>> responseEntities = new ArrayList<>();
+    public Page<FileListDto> getAllFiles(int start, int end) {
+        List<File> files = fileListDao.getAllFiles();
+        List<FileListDto> fileListDtos = files.stream()
+                .map(e -> FileListDto.builder()
+                        .id(e.getId())
+                        .fileName(e.getFileName())
+                        .userId(e.getUserId())
+                        .status(e.getStatus())
+                        .build()
+                ).collect(Collectors.toList());
+        log.info("Got all files");
+        var page = toPage(fileListDtos, PageRequest.of(start, end));
+        return page;
+    }
 
-        for (File image : images) {
-            responseEntities.add(fileService.getOutputFile(image.getFileName(), SUB_DIR, MediaType.IMAGE_JPEG));
+    private Page<FileListDto> toPage(List<FileListDto> list, Pageable pageable) {
+        if (pageable.getOffset() >= list.size()) {
+            return Page.empty();
         }
-
-        return ResponseEntity.ok(responseEntities);
-    }
-
-    public List<FileListDto> getAllFiles() {
-        List<File> profileImages = profileImageDao.getAllFiles();
-        List<FileListDto> profileImageDtos = profileImages.stream()
-                .map(e -> FileListDto.builder()
-                        .id(e.getId())
-                        .fileName(e.getFileName())
-                        .userId(e.getUserId())
-                        .status(e.getStatus())
-                        .build()
-                ).collect(Collectors.toList());
-        return profileImageDtos;
+        int startIndex = (int) pageable.getOffset();
+        int endIndex = (int) ((pageable.getOffset() + pageable.getPageSize()) > list.size() ?
+                list.size() :
+                pageable.getOffset() + pageable.getPageSize());
+        List<FileListDto> subList = list.subList(startIndex, endIndex);
+        return new PageImpl<>(subList, pageable, list.size());
     }
 
     public void deleteFile(int fileId) {
-        profileImageDao.delete(fileId);
+        fileListDao.delete(fileId);
     }
 }

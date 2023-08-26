@@ -34,11 +34,11 @@ public class FileRestController {
 
     }
 
-    @GetMapping
-    public ResponseEntity<?> getImagesByUserId() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return profileImageService.getImageByUsId(userService.mapToUserDto(userService.getUserByEmail(auth.getName()).get()).getId());
-    }
+//    @GetMapping
+//    public ResponseEntity<?> getImagesByUserId() {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        return profileImageService.getImageByUsId(userService.mapToUserDto(userService.getUserByEmail(auth.getName()).get()).getId());
+//    }
     @GetMapping("/download/{fileName}")
     public ResponseEntity<?> downloadFile(@PathVariable String fileName) throws IOException {
         Path filePath = Paths.get("data", "images", fileName);

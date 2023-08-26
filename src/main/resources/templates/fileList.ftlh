@@ -61,7 +61,7 @@
         </div>
     </div>
 </nav>
-    <h1>${hello}</h1>
+<h1>${hello}</h1>
 <div class="container">
     <table>
         <thead>
@@ -74,13 +74,17 @@
         </thead>
         <tbody>
         <#list files as file>
-        <tr>
-            <td>${file.userId}</td>
-            <td>${file.fileName}</td>
-            <td>${file.status}</td>
-            <td><a href="/download/File1.jpg" class="download-btn">Download</a></td>
-        </tr>
-       </#list>
+            <tr>
+                <td>${file.userId}</td>
+                <td>${file.fileName}</td>
+                <td>${file.status}</td>
+                <td>
+                    <button type="button" id="deleteBtn-${file.fileName}" data-fileid="${file.fileName}"
+                            class="delete-btn download-btn">Download
+                    </button>
+                </td>
+            </tr>
+        </#list>
 
         </tbody>
     </table>
@@ -105,5 +109,40 @@
     </ul>
 
 </nav>
+
+<!-- Include your HTML and CSS code here -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const downloadButtons = document.querySelectorAll(".download-btn");
+
+        downloadButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                const fileName = button.getAttribute("data-fileid");
+                const downloadUrl = `/posts/download/`+fileName;
+
+                fetch(downloadUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => response.blob())
+                    .then(blob => {
+                        const blobUrl = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = blobUrl;
+                        link.download = fileName;
+                        link.click();
+                        URL.revokeObjectURL(blobUrl);
+                    })
+                    .catch(error => {
+                        console.error('Error downloading file:', error);
+                    });
+            });
+        });
+    });
+</script>
+
 </body>
 </html>

@@ -147,7 +147,11 @@
             <tr>
                 <td>${image.fileName}</td>
                 <td>${image.status}</td>
-                <td><button type="button" id="deleteBtn-${image.getId()}" data-fileid="${image.getId()}" class="delete-btn download-btn">Delete</button></td>
+                <td>
+                    <button type="button" id="deleteBtn-${image.getId()}" data-fileid="${image.getId()}"
+                            class="delete-btn download-btn">Delete
+                    </button>
+                </td>
             </tr>
         </#list>
         </tbody>
@@ -176,11 +180,11 @@
 
 </nav>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const deleteButtons = document.querySelectorAll(".delete-btn");
 
         deleteButtons.forEach(button => {
-            button.addEventListener("click", function() {
+            button.addEventListener("click", function () {
                 const fileId = button.getAttribute("data-fileid");
                 if (confirm('Are you sure you want to delete this file?')) {
                     fetch(`/delete/` + fileId, {

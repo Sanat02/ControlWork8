@@ -35,16 +35,6 @@ public class ProfileImageService {
 
     }
 
-    public ResponseEntity<?> downloadImage(int imageId) {
-        String filename;
-        try {
-            ProfileImage profileImage = profileImageDao.getImageById(imageId);
-            filename = profileImage.getFileName();
-        } catch (NullPointerException e) {
-            throw new NoSuchElementException("Image not found!");
-        }
-        return fileService.getOutputFile(filename, "/images", MediaType.IMAGE_PNG);
-    }
 
     public List<ProfileImageDto> getImageByUserId(int userId) {
         List<ProfileImage> profileImages = profileImageDao.getImageByUserId(userId);
@@ -69,10 +59,12 @@ public class ProfileImageService {
 
         return ResponseEntity.ok(responseEntities);
     }
-    public List<ProfileImageDto> getAllFiles(){
+
+    public List<ProfileImageDto> getAllFiles() {
         List<ProfileImage> profileImages = profileImageDao.getAllFiles();
         List<ProfileImageDto> profileImageDtos = profileImages.stream()
                 .map(e -> ProfileImageDto.builder()
+                        .id(e.getId())
                         .fileName(e.getFileName())
                         .userId(e.getUserId())
                         .status(e.getStatus())
@@ -81,7 +73,7 @@ public class ProfileImageService {
         return profileImageDtos;
     }
 
-    public void deleteFile(int fileId){
+    public void deleteFile(int fileId) {
         profileImageDao.delete(fileId);
     }
 }

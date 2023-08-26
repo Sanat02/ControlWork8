@@ -36,7 +36,7 @@ public class FileListService {
     }
 
 
-    public List<FileListDto> getImageByUserId(int userId) {
+    public Page<FileListDto> getImageByUserId(int userId,int start,int end) {
         List<File> files = fileListDao.getImageByUserId(userId);
         List<FileListDto> fileListDtos = files.stream()
                 .map(e -> FileListDto.builder()
@@ -47,7 +47,8 @@ public class FileListService {
                         .build()
                 ).collect(Collectors.toList());
         log.info("Got images of user :" + userId);
-        return fileListDtos;
+        var page=toPage(fileListDtos,PageRequest.of(start, end));
+        return page;
     }
 
     public Page<FileListDto> getAllFiles(int start, int end) {

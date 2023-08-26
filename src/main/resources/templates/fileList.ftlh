@@ -15,7 +15,7 @@
         }
 
         table {
-            margin-top: 300px;
+            margin-top: 150px;
             border-collapse: collapse;
             width: 100%;
             margin-bottom: 15px;
@@ -64,7 +64,6 @@
         }
 
         .pag {
-            width: 150px;
             margin-left: 15px;
             margin-top: 10px;
             text-decoration: none;

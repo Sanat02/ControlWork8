@@ -38,9 +38,11 @@
         }
 
         table {
-            margin-top: 20px;
+
+            margin-top: 40px;
             border-collapse: collapse;
             width: 100%;
+            margin-bottom: 20px;
         }
 
         th, td {
@@ -66,6 +68,14 @@
 
         .download-btn:hover {
             background-color: #0056b3;
+        }
+        .pag {
+            margin-left: 15px;
+            margin-top: 10px;
+            text-decoration: none;
+            color: white;
+            background-color:  #007bff;
+            padding: 5px;
         }
 
     </style>
@@ -114,7 +124,7 @@
 
             </div>
 
-            <!-- user meta form small screens -->
+
             <div class="md:hidden text-sm my-2">
                 <h1 class="font-semibold">${account.fullName}</h1>
                 <span class="bioclass">Internet company</span>
@@ -137,7 +147,7 @@
         </tr>
         </thead>
         <tbody>
-        <#list account.images as image>
+        <#list account.pages.content as image>
             <tr>
                 <td>${image.fileName}</td>
                 <td>${image.status}</td>
@@ -150,6 +160,12 @@
         </#list>
         </tbody>
     </table>
+    <#if account.pages.hasPrevious()>
+        <a class="pag" href="/profile?page=${account.pages.number - 1}">Previous Page</a>
+    </#if>
+    <#if account.pages.hasNext()>
+        <a class="pag" href="/profile?page=${account.pages.number + 1}">Next Page</a>
+    </#if>
 </div>
 
 

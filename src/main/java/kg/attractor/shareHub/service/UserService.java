@@ -8,11 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @Service
 @RequiredArgsConstructor
@@ -22,24 +19,6 @@ public class UserService {
     private final UserDao userDao;
     private final PasswordEncoder encoder;
     private final FileListService profileImageService;
-
-
-    public List<UserDto> getAllUsers() {
-        log.info("Gol all users");
-        List<User> users = userDao.getAllUsers();
-        List<UserDto> userDtos = users.stream()
-                .map(e -> UserDto.builder()
-                        .id(e.getId())
-                        .fullName(e.getFullName())
-                        .password(e.getPassword())
-                        .email(e.getEmail())
-                        .accountName(e.getAccountName())
-                        .build()
-                ).collect(Collectors.toList());
-
-        return userDtos;
-    }
-
 
     public Optional<User> getUserByEmail(String email) {
         log.info("Gol user by email:" + email);
@@ -63,13 +42,6 @@ public class UserService {
         }
     }
 
-
-    public Optional<User> getUserById(int id) {
-        log.info("Got user by id:" + id);
-        return userDao.getUserById(id);
-    }
-
-
     public int save(UserDto userDto) {
         log.info("The user:" + userDto.getEmail() + " is saved!");
         return userDao.save(User.builder()
@@ -83,16 +55,6 @@ public class UserService {
 
     }
 
-    public void update(UserDto userDto) {
-        log.info("The user:" + userDto.getEmail() + " is updated!");
-        userDao.update(User.builder()
-                .accountName(userDto.getAccountName())
-                .email(userDto.getEmail())
-                .password(userDto.getPassword())
-                .fullName(userDto.getFullName())
-                .id(userDto.getId())
-                .build());
-    }
 
     public UserDto mapToUserDto(User user) {
         if (user != null) {
@@ -102,7 +64,6 @@ public class UserService {
                     .fullName(user.getFullName())
                     .email(user.getEmail())
                     .password(user.getPassword())
-                    .images(profileImageService.getImageByUserId(user.getId()))
                     .build();
         } else {
             return null;

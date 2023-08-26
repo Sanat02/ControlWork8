@@ -4,6 +4,7 @@ package kg.attractor.shareHub.dto;
 import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class UserDto {
 
 
     private List<FileListDto> images;
+    private Page<FileListDto> pages;
 
 
 }

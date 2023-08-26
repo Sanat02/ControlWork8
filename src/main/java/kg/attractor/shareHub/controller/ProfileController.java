@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.*;
 public class ProfileController {
     private final UserService userService;
     private final FileListService profileImageService;
-
+    private static final int PAGE_SIZE = 5;
     @GetMapping("/profile")
-    public String register(Model model) {
+    public String register(@RequestParam(name = "page", defaultValue = "0") int page,Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDto userDto = userService.mapToUserDto(userService.getUserByEmail(auth.getName()).orElse(null));
-        userDto.setImages(profileImageService.getImageByUserId(userDto.getId()));
+        userDto.setPages(profileImageService.getImageByUserId(userDto.getId(),page,PAGE_SIZE));
         model.addAttribute("account",userDto);
         return "profile";
     }
